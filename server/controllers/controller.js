@@ -34,29 +34,29 @@ exports.signUpUser = (req, res) => {
 }
 
 // ======== Logs In user ===========
-// exports.logInUser = async (req, res) => {
-//   const { email, password } = req.body;
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
-//   Model.findOne({ email }, (err, user) => {
-//     if (err) throw err;
+  Model.findOne({ email }, (err, user) => {
+    if (err) throw err;
 
-//     if (user) {
-//       bcrypt.compare(password, user.hashPassword, (err, result) => {
-//         if (err) {
-//           throw err;
-//         }
-
-//         if (result) {
-//           console.log(result, 'it  worked!');
-//           res.send(true)
-//         } else {
-//           console.log('Password failed, try again!')
-//           res.send(false)
-//         }
-//       })
-//     } else {
-//       console.log('User not found!')
-//       res.send(false)
-//     }
-//   })
-// }
+    if (user) {
+      bcrypt.compare(password, user.hashPassword, (err, result) => {
+        if (err) {
+          throw err;
+        }
+        console.log(result)
+        if (result) {
+          console.log(result, 'User found and authenticated!');
+          res.sendStatus(200)
+        } else {
+          console.log('Password failed!')
+          res.sendStatus(401)
+        }
+      })
+    } else {
+      console.log('User not found!')
+      res.sendStatus(404)
+    }
+  })
+}

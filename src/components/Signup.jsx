@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import GoogleAuth from './GoogleAuth.jsx';
 import axios from 'axios';
 
 
@@ -14,6 +15,7 @@ const Signup = () => {
 
     axios.post('/signup', data)
       .then((res) => {
+        console.log(res);
         if (res.status === 201) {
           history.push('/login');
         }
@@ -34,7 +36,7 @@ const Signup = () => {
             type="email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
-          {errors.email && "Last name is required"}
+          {errors.email && "Email is required"}
         </div>
 
         {/* Password */}
@@ -47,11 +49,12 @@ const Signup = () => {
               required: true
             })}
           />
-          {errors.password && "Last name is required"}
+          {errors.password && "Password is required"}
         </div>
 
         <input type="submit" value="signup" />
       </form>
+      <GoogleAuth />
     </div>
   )
 };

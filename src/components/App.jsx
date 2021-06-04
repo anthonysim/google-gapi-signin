@@ -7,7 +7,6 @@ import ProtectedRoute from './ProtectedRoute.jsx';
 import { Switch, Route, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { isAuthenticated } from '../actions/index.jsx';
-import axios from 'axios';
 
 
 const App = () => {
@@ -15,16 +14,16 @@ const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  function logoutHandler() {
+  async function logoutHandler() {
     try {
-      axios.get('/logout')
-        .then(res => {
-          dispatch(isAuthenticated(false));
-          alert(res.data);
-          return history.push('/login');
-        })
+      const auth = window.gapi.auth2.getAuthInstance();
+      await auth.signOut();
+      await dispatch(isAuthenticated(false));
+      alert('You are logging out!');
+      console.log(auth.isSignedIn.get());
+      return history.push('/login');
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
   }
 
