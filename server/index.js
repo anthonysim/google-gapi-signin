@@ -19,12 +19,23 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    maxAge: 20000
+    maxAge: 1000
   }
 }));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next(); // dont forget this
+});
+
 
 // ============= PassportJS ===============
 app.use(passport.initialize());
@@ -38,6 +49,7 @@ passport.deserializeUser(function (user, done) {
   done(null, user)
 });
 
+
 // ============= Google strategy ===============
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }
@@ -46,7 +58,7 @@ app.get('/auth/google',
 app.get("/google/callback",
   passport.authenticate("google"),
   (req, res) => {
-    res.redirect("http://localhost:3000/protected");
+    res.redirect("/protected");
   });
 
 // ======= Logout ========
@@ -69,7 +81,7 @@ app.post('/local', (req, res) => {
 app.use('/signup', signupRouter);
 
 // ============= Server Connection ===============
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} 🐵!`);
 })

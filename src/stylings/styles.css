@@ -110,9 +110,11 @@ input[type="submit"] {
 .googleSignIn {
   background-color: #4285F4;
   color: white;
-  padding: 0px 15px 0px 0px;
+  padding: 5px 10px 8px 0px;
   border-radius: 2.5px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .button {

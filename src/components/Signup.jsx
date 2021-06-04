@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
     console.log(data);
 
-    axios.post('http://localhost:3000/signup', data)
+    axios.post('/signup', data)
       .then((res) => {
         if (res.status === 201) {
           history.push('/login');

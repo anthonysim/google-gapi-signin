@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const dotenv = require('dotenv');
 
 // env configs
-dotenv.config({ path: 'config/config.env' });
+dotenv.config({ path: '__config__/config.env' });
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {

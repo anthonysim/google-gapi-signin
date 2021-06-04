@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import PageNotFound from './PageNotFound.jsx';
@@ -15,15 +15,9 @@ const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  function protectedHandler() {
-    if (!isAuth) {
-      console.log('fu')
-    }
-  }
-
   function logoutHandler() {
     try {
-      axios.get('http://localhost:3000/logout')
+      axios.get('/logout')
         .then(res => {
           dispatch(isAuthenticated(false));
           alert(res.data);
@@ -39,7 +33,7 @@ const App = () => {
       <div className="links">
         <Link to="/login">Login</Link>
         <Link to="/signup" >Signup</Link>
-        <Link onClick={protectedHandler} to="/protected" >Protected</Link>
+        <Link to="/protected" >Protected</Link>
         <button id="logout" onClick={logoutHandler} >Logout</button>
       </div>
 
