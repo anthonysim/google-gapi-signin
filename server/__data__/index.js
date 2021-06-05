@@ -1,7 +1,7 @@
 exports.posts = [
   {
     email: 'anthonyysim@gmail.com',
-    title: 'The California Bear'
+    title: 'How I became a crypto ka-jillionaire...'
   },
   {
     email: 'anthonyysim@gmail.com',
@@ -9,7 +9,7 @@ exports.posts = [
   },
   {
     email: 'anthonyysim@gmail.com',
-    title: 'Salt & Straw'
+    title: 'Salt & Straw Ice Cream'
   },
   {
     email: 'andyevans@gmail.com',

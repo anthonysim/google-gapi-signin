@@ -2,7 +2,7 @@ import React from "react";
 import GoogleAuth from './GoogleAuth.jsx';
 import { useForm } from "react-hook-form";
 import { isAuthenticated } from '../actions/index.jsx';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Login = () => {
@@ -16,10 +16,12 @@ const Login = () => {
     axios.post('/login', data)
       .then(res => {
         if (res.status === 200) {
+          document.cookie = `token=${res.data.token}; Secure; HttpOnly`
           dispatch(isAuthenticated(true))
         }
-        // document.cookie = `token=${res.data.token}; Secure; HttpOnly`
       })
+      .catch(err => console.error(err))
+
     e.target.reset();
   };
 

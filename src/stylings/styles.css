@@ -117,7 +117,7 @@ input[type="submit"] {
   text-align: center;
 }
 
-.button {
+.button, .posts {
   text-align: center;
 }
 
@@ -134,3 +134,4 @@ input[type="submit"] {
 #logout:hover {
   color: white;
 }
+

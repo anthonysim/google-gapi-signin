@@ -47,7 +47,6 @@ const GoogleAuth = () => {
         />
         &nbsp;&nbsp;{isAuth && window.gapi.auth2.getAuthInstance().isSignedIn.get() ? 'Sign out' : 'Sign in'}  with Google
       </button>
-
     </div>
   )
 }

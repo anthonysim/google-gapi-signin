@@ -72,8 +72,8 @@ const loginUser = async (req, res) => {
 
 // ===== GET protected route data =====
 const getData = (req, res) => {
-  console.log(posts)
-  res.end();
+  console.log(req.user)
+  res.send(posts)
 }
 
 
