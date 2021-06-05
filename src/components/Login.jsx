@@ -3,11 +3,13 @@ import GoogleAuth from './GoogleAuth.jsx';
 import { useForm } from "react-hook-form";
 import { isAuthenticated } from '../actions/index.jsx';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 const Login = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // submitting login info handler
   const onSubmit = (data, e) => {
@@ -16,8 +18,9 @@ const Login = () => {
     axios.post('/login', data)
       .then(res => {
         if (res.status === 200) {
-          document.cookie = `token=${res.data.token}; Secure; HttpOnly`
+          document.cookie = `token=${res.data.token};` // Secure; HttpOnly`
           dispatch(isAuthenticated(true))
+          return history.push('/protected');
         }
       })
       .catch(err => console.error(err))

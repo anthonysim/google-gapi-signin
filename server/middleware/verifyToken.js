@@ -7,7 +7,6 @@ dotenv.config({ path: '__config__/config.env' });
 // cookies version
 exports.verifyToken = (req, res, next) => {
   const token = req.cookies.token;
-  console.log('look at me', token)
 
   if (token === null) {
     return res.sendStatus(401);
@@ -19,7 +18,8 @@ exports.verifyToken = (req, res, next) => {
     }
     console.log(user);
     req.user = user;
-    next();
+    return res.sendStatus(200);
+    // next();
   })
 }
 

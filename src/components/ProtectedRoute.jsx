@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import GoogleAuth from './GoogleAuth.jsx';
+import { isAuthenticated } from '../actions/index.jsx';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 
 const ProtectedRoute = ({ isAuth, component: Component, ...rest }) => {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
 
   // componentDidMount
   useEffect(() => {
-    axios.get('/posts', {
+    axios.get('http://localhost:4000/protected', {
       withCredentials: true
     })
-      .then(res => {
-        setPosts(res.data);
+      .then(res => console.log(res))
+      .catch(err => {
+        dispatch(isAuthenticated(false))
+        console.error(err)
       })
-      .catch(err => console.error(err))
+    // eslint-disable-next-line
   }, [])
 
-  // styling
-  const styleOptions = {
-    fontSize: '24px'
-  }
-
-  const data = posts.map(({ email, title }) => {
-    return <div><br /><div>Username: {email}</div><div>Title: {title}</div></div>
-  });
 
   return (
     <Route {...rest} render={(props) => {
@@ -34,7 +30,6 @@ const ProtectedRoute = ({ isAuth, component: Component, ...rest }) => {
           <div >
             <Component />
             <br />
-            <div className="posts" style={styleOptions}>{data}</div>
             <br />
             <br />
             <GoogleAuth />

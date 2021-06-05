@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
-const { posts } = require('../__data__');
 
 
 // env configs
@@ -42,7 +41,7 @@ const signUpUser = (req, res) => {
 // ======== Logs In user ===========
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password)
+
   Model.findOne({ email }, (err, user) => {
     if (err) throw err;
 
@@ -56,7 +55,7 @@ const loginUser = async (req, res) => {
           console.log(result, 'User found and authenticated!');
           // creates json web token
           const token = jwt.sign({ user: user.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
-          console.log(token)
+          console.log('Created Token', token)
           res.json({ token })
         } else {
           console.log('Password failed!')
@@ -70,15 +69,8 @@ const loginUser = async (req, res) => {
   })
 }
 
-// ===== GET protected route data =====
-const getData = (req, res) => {
-  console.log(req.user)
-  res.send(posts)
-}
-
 
 module.exports = {
   signUpUser,
   loginUser,
-  getData,
 }

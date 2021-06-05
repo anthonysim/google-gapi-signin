@@ -11,9 +11,9 @@ const Signup = () => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log(data);
+    // console.log(data);
 
-    axios.post('/signup', data)
+    axios.post('http://localhost:4000/signup', data)
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
