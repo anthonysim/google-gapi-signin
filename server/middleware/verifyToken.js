@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 dotenv.config({ path: '__config__/config.env' });
 
 
-exports.authenticateToken = (req, res, next) => {
+exports.verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]
 
@@ -17,7 +17,14 @@ exports.authenticateToken = (req, res, next) => {
     if (err) {
       return res.sendStatus(403)
     }
+    console.log(user);
     req.user = user;
     next();
   })
 }
+
+
+// custom middleware checks to see if user is loggedin
+// const isLoggedIn = (req, res, next) => {
+//   req.user ? next() : res.sendStatus(401);
+// }

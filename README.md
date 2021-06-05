@@ -1,4 +1,4 @@
-# Passport JS Authentication
+# JWT Authentication Along with Google Sign In Option
 
 ## Table of Contents
 
@@ -9,10 +9,9 @@
 
 ## Description
 
-Practice authentication using react, react-hook-forms, passportjs, & bcrypt.
+Practice jwt authentication and google sign in using react, react-hook-forms, passportjs, & bcrypt.
 
-The whole purpose of this is just to get a better understanding of the authentication process using passportjs, specifically with local & google strategies.
-
+The whole purpose of this is just to get a better understanding of the authentication process.
 
 ## Usage
 ```

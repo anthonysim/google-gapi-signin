@@ -3,13 +3,14 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const { posts } = require('../__data__');
 
 
 // env configs
 dotenv.config({ path: '__config__/config.env' });
 
 // ======= Signs up user ===========
-exports.signUpUser = (req, res) => {
+const signUpUser = (req, res) => {
   const { email, password } = req.body;
 
   Model.findOne({ email }, (err, user) => {
@@ -39,9 +40,9 @@ exports.signUpUser = (req, res) => {
 }
 
 // ======== Logs In user ===========
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(email, password)
   Model.findOne({ email }, (err, user) => {
     if (err) throw err;
 
@@ -53,11 +54,10 @@ exports.loginUser = async (req, res) => {
         console.log(result)
         if (result) {
           console.log(result, 'User found and authenticated!');
-
-
-          const accessToken = jwt.sign(result, process.env.ACCESS_TOKEN_SECRET)
-
-          res.json({ accessToken: accessToken })
+          // creates json web token
+          const token = jwt.sign({ user: user.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
+          console.log(token)
+          res.json({ token })
         } else {
           console.log('Password failed!')
           res.sendStatus(401)
@@ -70,3 +70,15 @@ exports.loginUser = async (req, res) => {
   })
 }
 
+// ===== GET protected route data =====
+const getData = (req, res) => {
+  console.log(posts)
+  res.end();
+}
+
+
+module.exports = {
+  signUpUser,
+  loginUser,
+  getData,
+}

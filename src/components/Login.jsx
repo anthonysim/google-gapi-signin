@@ -1,10 +1,13 @@
 import React from "react";
 import GoogleAuth from './GoogleAuth.jsx';
 import { useForm } from "react-hook-form";
+import { isAuthenticated } from '../actions/index.jsx';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Login = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
   // submitting login info handler
   const onSubmit = (data, e) => {
@@ -12,7 +15,10 @@ const Login = () => {
 
     axios.post('/login', data)
       .then(res => {
-        console.log(res)
+        if (res.status === 200) {
+          dispatch(isAuthenticated(true))
+        }
+        // document.cookie = `token=${res.data.token}; Secure; HttpOnly`
       })
     e.target.reset();
   };
@@ -26,7 +32,7 @@ const Login = () => {
         <div>
           <label htmlFor="email">Email</label>
           <input
-            placeholder="andersonsilva@gmail.com"
+            placeholder="JamesHowlett@gmail.com"
             type="email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />

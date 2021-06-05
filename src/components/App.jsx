@@ -15,7 +15,7 @@ const App = () => {
   const history = useHistory();
 
   async function logoutHandler() {
-    console.log('logged out mf!')
+    console.log('logged out!');
     dispatch(isAuthenticated(false));
     return history.push('/login');
   }
@@ -26,7 +26,7 @@ const App = () => {
         <Link to="/login">Login</Link>
         <Link to="/signup" >Signup</Link>
         <Link to="/protected" >Protected</Link>
-        <button id="logout" onClick={logoutHandler} >Logout</button>
+        <button onClick={logoutHandler} id="logout" >Logout</button>
       </div>
 
       <Switch>

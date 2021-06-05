@@ -1,19 +1,19 @@
-const posts = [
+exports.posts = [
   {
     email: 'anthonyysim@gmail.com',
     title: 'The California Bear'
   },
   {
     email: 'anthonyysim@gmail.com',
-    title: 'How I Survived FEC & Lived to Tell the Tale'
+    title: 'Cookies vs. Local Storage?'
   },
   {
     email: 'anthonyysim@gmail.com',
-    title: 'PassportJS Kind of Sucks...'
+    title: 'Salt & Straw'
   },
   {
     email: 'andyevans@gmail.com',
-    title: 'I Like Icecream'
+    title: 'I Live in SF'
   },
   {
     email: 'mario@gmail.com',

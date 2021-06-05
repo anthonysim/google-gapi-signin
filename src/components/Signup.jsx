@@ -32,7 +32,7 @@ const Signup = () => {
         <div>
           <label htmlFor="email">Email</label>
           <input
-            placeholder="bjpenn@gmail.com"
+            placeholder="JamesHowlett@gmail.com"
             type="email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
