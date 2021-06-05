@@ -15,16 +15,9 @@ const App = () => {
   const history = useHistory();
 
   async function logoutHandler() {
-    try {
-      const auth = window.gapi.auth2.getAuthInstance();
-      await auth.signOut();
-      await dispatch(isAuthenticated(false));
-      alert('You are logging out!');
-      console.log(auth.isSignedIn.get());
-      return history.push('/login');
-    } catch (err) {
-      console.error(err)
-    }
+    console.log('logged out mf!')
+    dispatch(isAuthenticated(false));
+    return history.push('/login');
   }
 
   return (

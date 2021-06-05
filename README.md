@@ -29,9 +29,10 @@ Start Sever:
 - npm run server
 ```
 
-## Technologies
+## Technologies, Packages, etc.
 
 - React
 - Bcrypt
-- PassportJS
+- JWT
 - React-Hook-Forms
+- Google Sign-In for Websites (https://developers.google.com/identity/sign-in/web/reference)

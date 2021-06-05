@@ -1,7 +1,12 @@
 const Model = require('../db-models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 
+
+// env configs
+dotenv.config({ path: '__config__/config.env' });
 
 // ======= Signs up user ===========
 exports.signUpUser = (req, res) => {
@@ -48,7 +53,11 @@ exports.loginUser = async (req, res) => {
         console.log(result)
         if (result) {
           console.log(result, 'User found and authenticated!');
-          res.sendStatus(200)
+
+
+          const accessToken = jwt.sign(result, process.env.ACCESS_TOKEN_SECRET)
+
+          res.json({ accessToken: accessToken })
         } else {
           console.log('Password failed!')
           res.sendStatus(401)
@@ -60,3 +69,4 @@ exports.loginUser = async (req, res) => {
     }
   })
 }
+

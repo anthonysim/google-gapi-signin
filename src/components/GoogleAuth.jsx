@@ -37,7 +37,7 @@ const GoogleAuth = () => {
         return history.push('/login');
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
