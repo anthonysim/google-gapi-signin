@@ -45,7 +45,7 @@ const GoogleAuth = () => {
         <FcGoogle
           style={{ fontSize: '30px', backgroundColor: 'white', verticalAlign: 'middle' }}
         />
-        &nbsp;&nbsp;{isAuth && window.gapi.auth2.getAuthInstance().isSignedIn.get() ? 'Sign out' : 'Sign in'}  with Google
+        &nbsp;&nbsp;{isAuth ? 'Sign out' : 'Sign in'}  with Google
       </button>
     </div>
   )
