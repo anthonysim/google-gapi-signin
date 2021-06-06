@@ -31,7 +31,7 @@ Start App:
 1. Add the following script to index.html
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
-2. Load and initiate with a "Component Did Mount" to load and initate the Google API platform library.
+2. Load and initiate with a "Component Did Mount" to load and initate the Google API platform library. Make sure to create a Google client id (https://console.cloud.google.com/apis/credentials).
 
 useEffect(() => {
   window.gapi.load('client:auth2', () => {
