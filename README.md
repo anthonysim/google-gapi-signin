@@ -16,14 +16,8 @@ Practice Google sign-in authentication. The whole purpose of this was to get a b
 Install Dependencies:
 - npm install
 
-Start Develepment:
-- npm run dev
-
-Start UI:
-- npm run react:dev
-
-Start Sever:
-- npm run server
+Start App:
+- npm start
 ```
 
 ## Technologies, Packages, etc.
