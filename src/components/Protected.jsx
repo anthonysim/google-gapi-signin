@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from 'react-router-dom';
 
 const Protected = () => {
-
   return (
     <div>
       <h1>You are Logged in!</h1>

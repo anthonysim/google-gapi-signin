@@ -9,9 +9,7 @@
 
 ## Description
 
-Practice jwt authentication and google sign in using react, react-hook-forms, passportjs, & bcrypt.
-
-The whole purpose of this is just to get a better understanding of the authentication process.
+Practice Google sign-in authentication. The whole purpose of this is just to get a better understanding of how to do everything stated in https://developers.google.com/identity/sign-in/web/reference.
 
 ## Usage
 ```
@@ -31,7 +29,5 @@ Start Sever:
 ## Technologies, Packages, etc.
 
 - React
-- Bcrypt
-- JWT
-- React-Hook-Forms
+- Redux
 - Google Sign-In for Websites (https://developers.google.com/identity/sign-in/web/reference)

@@ -13,7 +13,7 @@ const GoogleAuth = () => {
   useEffect(() => {
     window.gapi.load('client:auth2', () => {
       window.gapi.client.init({
-        clientId: '494397811371-msav1l4ihglaug5hie0mde7sd95ahcnj.apps.googleusercontent.com',
+        clientId: 'put in your google client id',
         scope: 'email'
       })
     });
