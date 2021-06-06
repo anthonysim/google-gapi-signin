@@ -61,12 +61,7 @@ useEffect(() => {
 }
 
 // button
-<button onClick={googleHandler} className="googleSignIn">
-  <FcGoogle
-    style={{ fontSize: '30px', backgroundColor: 'white', verticalAlign: 'middle' }}
-  />
-    &nbsp;&nbsp;{isAuth ? 'Sign out' : 'Sign in'}  with Google
-</button>
+<button onClick={googleHandler}>Sign in with Google</button>
 
 Useful gapi methods:
 const auth = window.gapi.auth2.getAuthInstance();
