@@ -5,7 +5,7 @@
 1. [Description](#Description)
 2. [Usage](#Usage)
 3. [Technologies](#Technologies)
-
+4. [Directions](#Directions)
 
 ## Description
 
@@ -25,3 +25,63 @@ Start App:
 - React
 - Redux
 - Google Sign-In for Websites (https://developers.google.com/identity/sign-in/web/reference)
+
+## Directions
+```
+1. Add the following script to index.html
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+2. Load and initiate with a "Component Did Mount" to load and initate the Google API platform library.
+
+useEffect(() => {
+  window.gapi.load('client:auth2', () => {
+    window.gapi.client.init({
+      clientId: 'put in your google client id',
+      scope: 'email'
+    })
+  });
+  // eslint-disable-next-line
+}, [])
+
+3. Create a button and clickHander to sign in and out.
+
+  // clickHandler
+  async function googleHandler() {
+  try {
+    const auth = window.gapi.auth2.getAuthInstance();
+
+    if (auth.isSignedIn.get() === false) {
+      await auth.signIn();
+      await dispatch(isAuthenticated(true));
+      return history.push('/protected');
+    } else {
+      await auth.signOut();
+      await dispatch(isAuthenticated(false));
+      return history.push('/login');
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// button
+<button onClick={googleHandler} className="googleSignIn">
+  <FcGoogle
+    style={{ fontSize: '30px', backgroundColor: 'white', verticalAlign: 'middle' }}
+  />
+    &nbsp;&nbsp;{isAuth ? 'Sign out' : 'Sign in'}  with Google
+</button>
+
+Useful gapi methods:
+const auth = window.gapi.auth2.getAuthInstance();
+
+// checks if you're signed in/out true/false
+auth.isSignedIn.get()
+
+// signs you in
+auth.signIn();
+
+// signs you out
+auth.signOut();
+```
+
