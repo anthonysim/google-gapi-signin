@@ -52,12 +52,8 @@ useEffect(() => {
 
     if (auth.isSignedIn.get() === false) {
       await auth.signIn();
-      await dispatch(isAuthenticated(true));
-      return history.push('/protected');
     } else {
       await auth.signOut();
-      await dispatch(isAuthenticated(false));
-      return history.push('/login');
     }
   } catch (err) {
     console.error(err);
