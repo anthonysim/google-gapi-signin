@@ -69,7 +69,7 @@ useEffect(() => {
 <button onClick={googleHandler}>Sign in with Google</button>
 ```
 
-Useful gapi methods:
+4. Useful gapi methods:
 
 ```
 const auth = window.gapi.auth2.getAuthInstance();
